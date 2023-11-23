@@ -51,10 +51,18 @@ def grabImages(cardsDict, log) -> dict:
             # Parse the JSON content of the response
             json_data = response.json()
 
-            if 'card_faces' in json_data['data'][0]: # Check if dual faced card
+            json_num = 0
+            try:
+                while json_data['data'][json_num]['name'].lower() != i[0]:
+                    json_num += 1
+            except:
+                log += "Exact match for " + i[0] + " not found.\n"
+                continue
+
+            if 'card_faces' in json_data['data'][json_num]: # Check if dual faced card
                 # Download Frontside
                 try:
-                    large_image_url = json_data['data'][0]['card_faces'][0]['image_uris']['large']
+                    large_image_url = json_data['data'][json_num]['card_faces'][0]['image_uris']['large']
                 except:
                     log += "Error Reading JSON for " + i[0] + "\n"
                     continue
@@ -70,7 +78,7 @@ def grabImages(cardsDict, log) -> dict:
                 
                 # Download Backside
                 try:
-                    large_image_url = json_data['data'][0]['card_faces'][1]['image_uris']['large']
+                    large_image_url = json_data['data'][json_num]['card_faces'][1]['image_uris']['large']
                 except:
                     log += "Error Reading JSON for " + i[0] + "\n"
                     continue
@@ -85,7 +93,7 @@ def grabImages(cardsDict, log) -> dict:
                     log[0] += f"Failed to download image for back of {i}.\n"
 
             else:
-                large_image_url = json_data['data'][0]['image_uris']['large']
+                large_image_url = json_data['data'][json_num]['image_uris']['large']
                 response = requests.get(large_image_url)
                 
                 if response.status_code == 200:
