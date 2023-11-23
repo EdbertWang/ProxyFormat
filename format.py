@@ -43,7 +43,7 @@ def parseInput(log) -> dict:
 # https://api.scryfall.com/cards/search?q=name=%22black%20lotus%22
 def grabImages(cardsDict, log) -> dict:
     print("Retrieving Images from Scryfall")
-    search_base = "https://api.scryfall.com/cards/search?q=name=\"{}\""
+    search_base = "https://api.scryfall.com/cards/search?q=game=paper+name=\"{}\""
     fileNames = {}
     for i in cardsDict.items():
         response = requests.get(search_base.format(i[0]))
@@ -74,7 +74,7 @@ def grabImages(cardsDict, log) -> dict:
                 except:
                     log += "Error Reading JSON for " + i[0] + "\n"
                     continue
-                
+
                 response = requests.get(large_image_url)
                 
                 if response.status_code == 200:
