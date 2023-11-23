@@ -22,12 +22,12 @@ def parseInput(log) -> dict:
         if (user_input == "end"):
             break
         
-        user_input = user_input.split(" ")
+        user_input = user_input.split(" ",1)
         if len(user_input) < 2 or user_input[0] == "" or user_input[1] == "":
             log[0] += "Unrecognised input: " + str(user_input) + "\n"
             continue
     
-        user_input = user_input[:2]
+        user_input[1] = user_input[1].split("(")[0].strip()
 
         if user_input[0][-1] == 'x':
            user_input[0] = user_input[0][:-1]

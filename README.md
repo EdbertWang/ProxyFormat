@@ -13,17 +13,21 @@ The program currently assumes that you will be using standard letter sized paper
 
         python3 format.py
 
+    This will also work if your version of python is lower than 3.
+
+        python format.py
+
 3. Images will be saved into the images folder, output.pdf is the resultant pdf, and ErrorLog.txt will describe anything that went wrong.
 
 4. The pdf should now be directly printable. This has yet to be tested.
 
 ### Formatting
-The parser will accept any input where the first 2 words follow one of the listed 2 forms:
+The parser should accept input from any of the following sources:
 
-* {Copies - Integer}x {Cardname - String} ...
-* {Copies - Integer} {Cardname - String} ...
-
-Anything past the number of copies and the card name will be ignored.
+* TCGPLAYER - Verified Functional
+* CARD KINGDOM - Verified Functional
+* MOXFIELD - Verified Functional
+* ARCHIDECKT - Verified Functional
 
 ### Notes
 Some dual faced cards can cause some issues. Its currently unknown if that is an issue with the code, or with Scryfall API. These cards will simply be skipped and noted in the error log.
