@@ -27,3 +27,5 @@ Anything past the number of copies and the card name will be ignored.
 
 ### Notes
 Some dual faced cards can cause some issues. Its currently unknown if that is an issue with the code, or with Scryfall API. These cards will simply be skipped and noted in the error log.
+
+I have removed the functionality to grab arena only versions because it makes it marginally easier to implement.
